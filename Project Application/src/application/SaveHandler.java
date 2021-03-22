@@ -44,7 +44,7 @@ public class SaveHandler {
 //			}
 			br.close();
 			bw.close();
-		}catch(Exception ex) {
+		}catch(Exception ex) {z
 			return;
 		}
 }
@@ -74,7 +74,7 @@ public class SaveHandler {
 //				List<String> info = new ArrayList<>();
 				load(getFilePath(filename));
 				for(Map.Entry me : UserProfile.Users.entrySet()) {
-					writer.println("Du er logget inn som: "+ me.getKey() + ", med fødselsår: " + UserProfile.Users.get(me.getKey()));
+					writer.println("Du er logget inn som: "+ me.getKey() + ", year " + UserProfile.Users.get(me.getKey()));
 			}
 		}
 }
@@ -90,7 +90,7 @@ public class SaveHandler {
 }
 	 
 	public void load(String filename) throws FileNotFoundException {
-		try (Scanner scanner = new Scanner(new File(getFilePath(filename)))) {   //usikker på om dette funker
+		try (Scanner scanner = new Scanner(new File(getFilePath(filename)))) {   //usikker p� om dette funker
 			while(scanner.hasNextLine()) {
 				System.out.println(scanner.nextLine());
 			}

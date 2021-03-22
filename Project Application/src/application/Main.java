@@ -34,6 +34,8 @@ public class Main extends Application {
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
 		launch(args);
+		System.out.println(System.getProperties());
+
 //		ObjectInputStream in = new ObjectInputStream(new FileInputStream("UserData.txt"));
 //		in.readObject();
 //		System.out.println(in);

@@ -34,7 +34,9 @@ import javafx.stage.Stage;
 public class GradesController implements Initializable {
 	public boolean isLoggedIn = true;
 	public String loggedInUser = MainController.loggedInUser;
+
 	List<String> gradesList = new ArrayList<String>();
+	static HashMap<String, HashMap<String, String>> outerMap1 = new HashMap<>(); 
 	String[] gradeSplitter;
 	
 	
@@ -60,19 +62,25 @@ public class GradesController implements Initializable {
 		System.out.println("Bruker som er logget inn er: "+ MainController.loggedInUser);
 		loggedInUser = MainController.loggedInUser;
 		isLoggedIn = true;
-//		System.out.println(gradesList);       //tester for liste med navn og hashmap(grades)
+		System.out.println(outerMap1);       //tester for liste med navn og hashmap(grades)
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("UserGrades.txt"));     //legger til i en liste, dette trenger jeg for Ã¥ korrigere slik at man kan replace karaktere
 			String s;
 			while((s = br.readLine()) != null) {
-				gradesList.add(s);
+				for(int i = 0; i < gradesList.size(); i++) {
+					gradeSplitter = gradesList.get(i).split(";");    //sjekker om brukeren ligger inne i UserGrades, må fikses
+					if(gradeSplitter[0].equals(loggedInUser)) {
+						outerMap1.put(gradeSplitter[0], UserProfile.userGrades);
+					}
+				}
+//				outerMap1.put(s, gradesList);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.println(gradesList);
+
+//		System.out.println(gradesList);
 		
 		course1.setItems(list);
 		course2.setItems(list);
@@ -85,12 +93,7 @@ public class GradesController implements Initializable {
 	}
 	
 	public void addGrades(ActionEvent event) throws FileNotFoundException, IOException {
-		for(int i = 0; i < gradesList.size(); i++) {
-			gradeSplitter = gradesList.get(i).split(";");    //sjekker om brukeren ligger inne i UserGrades
-			if(gradeSplitter[0].equals(loggedInUser)) {
-				System.out.println(gradesList.get(i));
-			}
-		}
+
 		
 		
 		

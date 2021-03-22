@@ -48,9 +48,9 @@ public class UserProfile {
 	
 	
 
-	public void validUsername(String user, int year) {	     //valideringsmetode
+	public static void validUsername(String user, int year) {	     //valideringsmetode
 		if (user.isEmpty() || user.isBlank() || year <= 0) {
-			throw new IllegalArgumentException("år må være >= 0 og brukernavn ikke blank");
+			throw new IllegalArgumentException("Year must be >= 0 and username not empty/blank");
 			}
 	}
 	
